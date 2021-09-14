@@ -3,7 +3,7 @@
 namespace GIF.Domain
 {
     public class IFoodTotalOrderDTO
-    {        
+    {
         public string Bearer { get; set; }
         public int OrderCount { get; set; }
         public long Price { get; set; }

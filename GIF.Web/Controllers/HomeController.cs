@@ -27,7 +27,7 @@ namespace GIF.Web.Controllers
         {
             IFoodTotalOrderDTO totalOrders = new();
 
-            if (!String.IsNullOrEmpty(bearerToken))            
+            if (!String.IsNullOrEmpty(bearerToken))
                 totalOrders = _ifoodAPI.GetOrders(bearerToken);
 
             totalOrders.Bearer = bearerToken;
