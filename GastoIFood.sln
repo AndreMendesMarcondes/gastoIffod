@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31402.337
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GIF.Web", "GIF.Web\GIF.Web.csproj", "{63178428-7858-4BFC-81D4-974B7B8E5FB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GIF.Domain", "Domain\GIF.Domain.csproj", "{DA699354-500D-4D54-AF2A-A7F8792D28AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GIF.Service", "GIF.Service\GIF.Service.csproj", "{827A0165-F27F-4B35-8669-7E75AA3E9E5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63178428-7858-4BFC-81D4-974B7B8E5FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63178428-7858-4BFC-81D4-974B7B8E5FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63178428-7858-4BFC-81D4-974B7B8E5FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63178428-7858-4BFC-81D4-974B7B8E5FB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA699354-500D-4D54-AF2A-A7F8792D28AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA699354-500D-4D54-AF2A-A7F8792D28AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA699354-500D-4D54-AF2A-A7F8792D28AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA699354-500D-4D54-AF2A-A7F8792D28AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{827A0165-F27F-4B35-8669-7E75AA3E9E5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{827A0165-F27F-4B35-8669-7E75AA3E9E5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{827A0165-F27F-4B35-8669-7E75AA3E9E5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{827A0165-F27F-4B35-8669-7E75AA3E9E5E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {762E1211-EA30-43C6-924F-C7BEA34F03D6}
+	EndGlobalSection
+EndGlobal

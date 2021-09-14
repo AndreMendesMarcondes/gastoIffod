@@ -1,0 +1,11 @@
+﻿using System.Collections.Generic;
+
+namespace GIF.Domain
+{
+    public class IFoodTotalOrderDTO
+    {
+        public int OrderCount { get; set; }
+        public long Price { get; set; }
+        public List<IFoodTotalByMonthOrderDTO> IFoodTotalByMonthOrders { get; set; }
+    }
+}
