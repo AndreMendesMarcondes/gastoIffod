@@ -1,4 +1,5 @@
-﻿using GIF.Service.Interface;
+﻿using GIF.Domain;
+using GIF.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -18,16 +19,20 @@ namespace GIF.Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(new IFoodTotalOrderDTO());
         }
 
         [HttpPost]
         public IActionResult Index(string bearerToken)
         {
-            if (!String.IsNullOrEmpty(bearerToken))
-                _ifoodAPI.GetOrders(bearerToken);
+            IFoodTotalOrderDTO totalOrders = new();
 
-            return View(bearerToken);
+            if (!String.IsNullOrEmpty(bearerToken))            
+                totalOrders = _ifoodAPI.GetOrders(bearerToken);
+
+            totalOrders.Bearer = bearerToken;
+
+            return View(totalOrders);
         }
     }
 }

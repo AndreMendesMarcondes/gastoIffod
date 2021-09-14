@@ -1,16 +1,62 @@
-﻿@model string
+﻿@model GIF.Domain.IFoodTotalOrderDTO
 
-    <form method="post">
-        <div class="row">
-            <div class="offset-2 col-10">
-                <b>Bearer Token</b>&nbsp;
-                <div class="input-group">
-                    <input type="text" class="form-control" name="bearerToken" id="bearerToken" placeholder="eyJraWQiOiJiNjRjNjZmZS00ZWY..." value="@Model">
-                    &nbsp;
-                    <span class="input-group-btn">
-                        <button class="btn btn-outline-danger" type="submit">Bora!</button>
-                    </span>
-                </div>
+<form method="post">
+    <div class="row">
+        <div class="offset-1 col-10">
+            <b>Bearer Token</b>&nbsp;
+            <div class="input-group">
+                <input type="text" class="form-control" name="bearerToken" id="bearerToken" placeholder="eyJraWQiOiJiNjRjNjZmZS00ZWY..." value="@Model.Bearer">
+                &nbsp;
+                <span class="input-group-btn">
+                    <button class="btn btn-outline-danger" type="submit">Bora!</button>
+                </span>
             </div>
         </div>
-    </form>
+    </div>
+</form>
+
+@if (Model.OrderCount > 0)
+{
+    <br>
+    <div class="row">
+        <div class="offset-3 col-6 alert alert-warning text-center">
+            <h2>Total Pedidos</h2>
+            <h1><b>@Model.OrderCount</b></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-3 col-6 alert alert-danger text-center">
+            <h2>Total Gasto</h2>
+            <h1><b>@((Model.Price / 100m).ToString("c"))</b></h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="offset-1 col-10">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Mês</th>
+                        <th scope="col">Pedidos</th>
+                        <th scope="col">Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var orderByMouth in Model.IFoodTotalByMonthOrders)
+                    {
+                        <tr>
+                            <th>@orderByMouth.Month</th>
+                            <th>@orderByMouth.OrderCount</th>
+                            <th>@((orderByMouth.Price / 100m).ToString("c"))</th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <style>
+        th {
+            text-align: center;
+        }
+    </style>
+}
