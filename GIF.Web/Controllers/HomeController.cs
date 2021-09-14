@@ -30,7 +30,7 @@ namespace GIF.Web.Controllers
             if (!String.IsNullOrEmpty(bearerToken))
                 totalOrders = _ifoodAPI.GetOrders(bearerToken);
 
-            totalOrders.Bearer = bearerToken;
+            totalOrders.Bearer = bearerToken.replace("Bearer ", "");
 
             return View(totalOrders);
         }
