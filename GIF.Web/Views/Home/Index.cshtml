@@ -85,3 +85,18 @@
         }
     </style>
 }
+else
+{
+    @if ((bool)@ViewData["ShowNoOrders"])
+    {
+        <br />
+        <div class="row">
+            <div class="offset-1 col-10">
+                <div class="container text-center">
+                    <h5>Nenhum pedido encontrado ou o Bearer Token informado é inválido!</h5>
+                </div>
+            </div>
+        </div>
+    }
+}
+
