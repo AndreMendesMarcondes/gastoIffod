@@ -19,6 +19,7 @@ namespace GIF.Web.Controllers
 
         public IActionResult Index()
         {
+            ViewData["ShowNoOrders"] = false;
             return View(new IFoodTotalOrderDTO());
         }
 
@@ -32,6 +33,7 @@ namespace GIF.Web.Controllers
 
             totalOrders.Bearer = bearerToken;
 
+            ViewData["ShowNoOrders"] = totalOrders.OrderCount == 0;
             return View(totalOrders);
         }
     }
