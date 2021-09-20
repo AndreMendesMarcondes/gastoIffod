@@ -1,6 +1,6 @@
 ﻿using GIF.Domain;
-using GIF.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
@@ -12,12 +12,12 @@ namespace GIF.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IIFoodAPI _ifoodAPI;
+        private readonly IConfiguration _configuration;
 
-        public HomeController(ILogger<HomeController> logger, IIFoodAPI ifoodAPI)
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _logger = logger;
-            _ifoodAPI = ifoodAPI;
+            _configuration = configuration;
         }
 
         public IActionResult Index()
@@ -32,11 +32,11 @@ namespace GIF.Web.Controllers
             return View(await WrapperAPICall(bearerToken));
         }
 
-        private static async Task<IFoodTotalOrderDTO> WrapperAPICall(string bearerToken)
+        private async Task<IFoodTotalOrderDTO> WrapperAPICall(string bearerToken)
         {
             IFoodTotalOrderDTO ifoodOrders = new();
             HttpClient httpClient = new();
-            httpClient.BaseAddress = new Uri(Environment.GetEnvironmentVariable("API"));
+            httpClient.BaseAddress = new Uri(_configuration["API"]);
             HttpResponseMessage response = await httpClient.GetAsync($"/api/IFoodCaller?bearerToken={bearerToken}");
 
             if (response.IsSuccessStatusCode)
