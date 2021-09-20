@@ -2,7 +2,10 @@
 using GIF.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace GIF.Web.Controllers
 {
@@ -24,17 +27,25 @@ namespace GIF.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(string bearerToken)
+        public async Task<IActionResult> Index(string bearerToken)
         {
-            IFoodTotalOrderDTO totalOrders = new();
+            return View(await WrapperAPICall(bearerToken));
+        }
 
-            if (!String.IsNullOrEmpty(bearerToken))
-                totalOrders = _ifoodAPI.GetOrders(bearerToken);
+        private static async Task<IFoodTotalOrderDTO> WrapperAPICall(string bearerToken)
+        {
+            IFoodTotalOrderDTO ifoodOrders = new();
+            HttpClient httpClient = new();
+            httpClient.BaseAddress = new Uri(Environment.GetEnvironmentVariable("API"));
+            HttpResponseMessage response = await httpClient.GetAsync($"/api/IFoodCaller?bearerToken={bearerToken}");
 
-            totalOrders.Bearer = bearerToken;
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                ifoodOrders = JsonConvert.DeserializeObject<IFoodTotalOrderDTO>(result);
+            }
 
-            ViewData["ShowNoOrders"] = totalOrders.OrderCount == 0;
-            return View(totalOrders);
+            return ifoodOrders;
         }
     }
 }
