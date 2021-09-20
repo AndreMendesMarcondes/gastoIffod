@@ -43,6 +43,7 @@ namespace GIF.Web.Controllers
             {
                 string result = await response.Content.ReadAsStringAsync();
                 ifoodOrders = JsonConvert.DeserializeObject<IFoodTotalOrderDTO>(result);
+                ViewData["ShowNoOrders"] = ifoodOrders.OrderCount == 0;
             }
 
             return ifoodOrders;
