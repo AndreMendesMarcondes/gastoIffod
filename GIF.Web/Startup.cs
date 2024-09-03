@@ -2,9 +2,12 @@ using GIF.Service.Imp;
 using GIF.Service.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using System.Globalization;
 
 namespace GIF.Web
 {
@@ -19,6 +22,14 @@ namespace GIF.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[] { new CultureInfo("pt-BR") };
+                options.DefaultRequestCulture = new RequestCulture("pt-BR");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
+
             services.AddControllersWithViews();
             services.AddSingleton<IIFoodAPI, IFoodAPI>();
             services.AddSingleton<IIFoodBusiness, IFoodBusiness>();
@@ -42,6 +53,9 @@ namespace GIF.Web
             app.UseRouting();
 
             app.UseAuthorization();
+
+            var localizationOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>().Value;
+            app.UseRequestLocalization(localizationOptions);
 
             app.UseEndpoints(endpoints =>
             {

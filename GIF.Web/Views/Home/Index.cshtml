@@ -1,4 +1,5 @@
-﻿@model GIF.Domain.IFoodTotalOrderDTO
+﻿@using System.Globalization;
+@model GIF.Domain.IFoodTotalOrderDTO
 
 <form method="post">
     <div class="row">
@@ -52,7 +53,7 @@
     <div class="row">
         <div class="offset-3 col-6 alert alert-danger text-center">
             <h2>Total Gasto</h2>
-            <h1><b>@((Model.Price / 100m).ToString("c"))</b></h1>
+            <h1><b>@((Model.Price / 100m).ToString("C", CultureInfo.GetCultureInfo("pt-BR")))</b></h1>
         </div>
     </div>
 
@@ -72,7 +73,7 @@
                         <tr>
                             <th>@orderByMouth.Month</th>
                             <th>@orderByMouth.OrderCount</th>
-                            <th>@((orderByMouth.Price / 100m).ToString("c"))</th>
+                            <th>@((orderByMouth.Price / 100m).ToString("C", CultureInfo.GetCultureInfo("pt-BR")))</th>
                         </tr>
                     }
                 </tbody>
