@@ -42,7 +42,7 @@ namespace GIF.Service.Imp
         private static List<IFoodTotalByMonthOrderDTO> GroupOrdersByMonth(List<IFoodOrderFilteredDTO> filteredOrders)
         {
             List<IFoodTotalByMonthOrderDTO> foodTotalByMonthOrders = new();
-            var months = filteredOrders.OrderBy(c => c.CreatedAt)
+            var months = filteredOrders.OrderByDescending(c => c.CreatedAt)
                                                        .Select(c => c.CreatedAt.ToString("MM/yy"))
                                                        .Distinct();
 

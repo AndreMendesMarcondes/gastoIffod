@@ -99,4 +99,51 @@ else
         </div>
     }
 }
+<div id="loading-overlay">
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<style>
+    #loading-overlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999; /* Ensure it's on top */
+    }
+
+        #loading-overlay .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
+</style>
+<script>
+    window.addEventListener('load', function () {
+        document.getElementById('loading-overlay').style.display = 'none';
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', function (event) {
+            // Exibe o overlay de loading
+            document.getElementById('loading-overlay').style.display = 'flex';
+
+            // Coloca o input como readonly em vez de disabled
+            const bearerTokenInput = document.getElementById('bearerToken');
+            bearerTokenInput.readOnly = true;
+
+            // Desabilita o botão de envio
+            submitButton.disabled = true;
+        });
+    });
+</script>
+
 
